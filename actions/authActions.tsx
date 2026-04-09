@@ -1,37 +1,38 @@
-import { useRouter } from 'next/navigation';
+import { API_CONFIG } from '../config/api.config';
+import Cookies from 'js-cookie';
 
-export const signUpHandler = async (e: React.FormEvent) => {
-  e.preventDefault();
-  const router = useRouter();
+export const loginHandler = async (credentials: any) => {
 
-  try {
-      //(API Call)
-      console.log("registring ...");
-      
-      const success = true;
+    const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.LOGIN}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(credentials),
+    });
 
-      if (success) {
-        router.push('/todos'); 
-      }
-    } catch (error) {
-      console.error("Error hapend!", error);
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Login failed.');
     }
-  }
+    const data = await response.json();
+    
+    Cookies.set('token', data.token, { expires: 7, path: '/' });
 
-export const loginHandler = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const router = useRouter();
-
-    try {
-      //(API Call)
-      console.log("login ...");
-      
-      const success = true;
-
-      if (success) {
-        router.push('/todos'); 
-      }
-    } catch (error) {
-      console.error("Error hapend!", error);
-    }
+    return data;
 }
+
+export const signUpHandler = async (credentials: any) => {
+
+    const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.SIGNUP}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(credentials),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'registration failed.');
+    }
+
+    return await response.json();
+}
+

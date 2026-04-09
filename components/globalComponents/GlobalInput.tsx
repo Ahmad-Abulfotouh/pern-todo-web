@@ -10,7 +10,7 @@ interface AuthInputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function AuthInput({ type, placeholder, icon: Icon, value, onChange }: AuthInputProps) {
+export default function GlobalInput({ type, placeholder, icon: Icon, value, onChange }: AuthInputProps) {
   const [showPassword, setShowPassword] = useState(false);
 
   const inputType = type === 'password' && showPassword ? 'text' : type;

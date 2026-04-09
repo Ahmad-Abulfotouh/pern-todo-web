@@ -12,7 +12,7 @@ export default function AuthCard() {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
-    <div className="group h-[500px] w-80 [perspective:1000px]">
+    <div className="group h-[550px] w-80 [perspective:1000px]">
       <div
         className={`relative h-full w-full transition-all duration-700 [transform-style:preserve-3d] ${
           isFlipped ? '[transform:rotateY(180deg)]' : ''
