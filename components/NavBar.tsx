@@ -15,10 +15,10 @@ const NavBar = (props: Props) => {
   return (
     <header>
         <nav className='p-1 flex justify-between border-2 items-center flex-row rounded-4xl'>
-            <div className="ml-5 px-8 py-2 font-bold">
+            <div className="ml-5 px-4 sm:px-8 py-2 font-bold">
                 PERN<br />Todo
             </div>
-            <ul className='w-40 mr-10 flex justify-between items-center flex-row'>
+            <ul className='w-35 mr-5 sm:w-40 sm:mr-10 flex justify-between items-center flex-row'>
                 <NavItem 
                   title="todos" 
                   href="/todos" 

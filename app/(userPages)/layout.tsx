@@ -4,7 +4,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   return (
     <>
       <NavBar /> 
-      <main className="w-full px-20 my-20 flex flex-col justify-center items-center">{children}</main>
+      <main className="w-full m-auto my-20 flex flex-col justify-center items-center md:w-1/2">{children}</main>
     </>
   );
 }
